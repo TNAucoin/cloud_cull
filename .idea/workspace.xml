@@ -7,16 +7,10 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="603e789f-9957-4164-b640-85f7df7becc5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/clutter_cull.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/cody_history.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="603e789f-9957-4164-b640-85f7df7becc5" name="Changes" comment="assume role, and skeleton cli">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,9 +29,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2dyi9VukSeATEmnRQgvLKZtGPla" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -57,7 +51,7 @@
     "RunOnceActivity.rust.reset.selective.auto.import": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/travis/RustroverProjects/clutter_cull",
+    "last_opened_file_path": "/Users/travis/RustroverProjects/cloud_cull",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -70,13 +64,9 @@
 }]]></component>
   <component name="RunManager" selected="Cargo.Run clutter_cull">
     <configuration name="Run clutter_cull" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
-      <option name="command" value="run --package clutter_cull --bin clutter_cull -- account=113191093292" />
+      <option name="command" value="run --package cloud_cull --bin cloud_cull" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
-      <envs>
-        <env name="AWS_ACCESS_KEY_ID" value="ASIARVH2RZOK7VPSL3GI" />
-        <env name="AWS_SECRET_ACCESS_KEY" value="QSQLDU0bMYWEVAQTk6yowWjChLCHNJYvy6vIWTb3" />
-        <env name="AWS_SESSION_TOKEN" value="IQoJb3JpZ2luX2VjEAoaCXVzLWVhc3QtMiJIMEYCIQCS" />
-      </envs>
+      <envs />
       <option name="emulateTerminal" value="true" />
       <option name="channel" value="DEFAULT" />
       <option name="requiredFeatures" value="true" />
@@ -123,11 +113,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710986567538</updated>
-      <workItem from="1710986568658" duration="6864000" />
+      <workItem from="1710986568658" duration="7024000" />
+      <workItem from="1710993605956" duration="68000" />
     </task>
+    <task id="LOCAL-00001" summary="assume role, and skeleton cli">
+      <option name="closed" value="true" />
+      <created>1710993480395</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710993480395</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="assume role, and skeleton cli" />
+    <option name="LAST_COMMIT_MESSAGE" value="assume role, and skeleton cli" />
   </component>
 </project>

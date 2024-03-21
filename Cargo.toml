@@ -1,5 +1,5 @@
 [package]
-name = "clutter_cull"
+name = "cloud_cull"
 version = "0.1.0"
 edition = "2021"
 
