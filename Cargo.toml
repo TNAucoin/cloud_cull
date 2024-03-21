@@ -6,3 +6,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+anyhow = "1.0.81"
+aws-config = "1.1.8"
+aws-sdk-dynamodb = "1.19.0"
+aws-sdk-sts = "1.17.0"
+clap = { version = "4.5.3", features = ["derive","cargo"] }
+tokio = { version = "1.36.0", features = ["full"] }
