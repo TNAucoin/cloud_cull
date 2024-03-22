@@ -9,12 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="603e789f-9957-4164-b640-85f7df7becc5" name="Changes" comment="assume role, and skeleton cli">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cloud.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/cloud.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cloud/ebs.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/cloud/ebs.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cloud/ec2.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/cloud/ec2.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/core.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/aws_core.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/aws_core.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/cli.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/cli.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +131,7 @@
       <workItem from="1710986568658" duration="7024000" />
       <workItem from="1710993605956" duration="3718000" />
       <workItem from="1711119284743" duration="63000" />
-      <workItem from="1711119358911" duration="8744000" />
+      <workItem from="1711119358911" duration="10105000" />
     </task>
     <task id="LOCAL-00001" summary="assume role, and skeleton cli">
       <option name="closed" value="true" />
