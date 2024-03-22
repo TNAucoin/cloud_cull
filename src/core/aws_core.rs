@@ -1,16 +1,21 @@
 use anyhow::Context;
-use aws_config::meta::region::RegionProviderChain;
-use aws_config::{BehaviorVersion, SdkConfig};
+use aws_config::{BehaviorVersion, Region, SdkConfig};
 use aws_sdk_sts::operation::assume_role::AssumeRoleOutput;
 use aws_sdk_sts as sts;
 
 /// Get the AWS configuration
-pub async fn get_config() -> anyhow::Result<SdkConfig> {
-    let region_provider = RegionProviderChain::default_provider().or_else("us-east-1");
+pub async fn get_config(role: String, config: &SdkConfig) -> anyhow::Result<SdkConfig> {
+    let cred_provider = aws_config::sts::AssumeRoleProvider::builder(role)
+        .session_name("cloud-clutter-cli")
+        .configure(config)
+        .build()
+        .await;
+    
     let config = aws_config::defaults(BehaviorVersion::latest())
-        .region(region_provider)
+        .credentials_provider(cred_provider)
         .load()
         .await;
+    
     Ok(config)
 }
 
