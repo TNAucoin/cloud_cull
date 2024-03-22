@@ -8,9 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="603e789f-9957-4164-b640-85f7df7becc5" name="Changes" comment="assume role, and skeleton cli">
+      <change afterPath="$PROJECT_DIR$/src/core.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/aws_core.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/cli.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +21,13 @@
   </component>
   <component name="CodyActiveAccount">
     <option name="activeAccountId" value="VXNlcjozMjY1MTg=" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Rust File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,11 +68,15 @@
     "nodejs_package_manager_path": "npm",
     "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
     "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
+    "settings.editor.selected.configurable": "language.rust.cargo.check",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RsExternalLinterProjectSettings">
+    <option name="runOnTheFly" value="true" />
+  </component>
   <component name="RunManager" selected="Cargo.Run clutter_cull">
-    <configuration name="Run clutter_cull" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
+    <configuration name="Run clutter_cull" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="command" value="run --package cloud_cull --bin cloud_cull" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
@@ -98,9 +111,14 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Cargo.Run clutter_cull" />
       <item itemvalue="Cargo.Test clutter_cull" />
+      <item itemvalue="Cargo.Run clutter_cull" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Cargo.Run clutter_cull" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
@@ -114,7 +132,7 @@
       <option name="presentableId" value="Default" />
       <updated>1710986567538</updated>
       <workItem from="1710986568658" duration="7024000" />
-      <workItem from="1710993605956" duration="68000" />
+      <workItem from="1710993605956" duration="3718000" />
     </task>
     <task id="LOCAL-00001" summary="assume role, and skeleton cli">
       <option name="closed" value="true" />
