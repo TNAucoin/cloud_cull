@@ -166,6 +166,76 @@ dependencies = [
 ]
 
 [[package]]
+name = "aws-sdk-ebs"
+version = "1.17.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ac3cc213a38ac6033e8e8539b2ee3aa4a9044eed4932bd5c7df7ba7de118a62f"
+dependencies = [
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-sigv4",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "aws-types",
+ "bytes",
+ "fastrand",
+ "http 0.2.12",
+ "once_cell",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
+name = "aws-sdk-ec2"
+version = "1.27.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9fa559d9ed8f05b482d1d1317876315b51fd5db8a2790b3f779fe42ee7396c6f"
+dependencies = [
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-query",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "aws-smithy-xml",
+ "aws-types",
+ "fastrand",
+ "http 0.2.12",
+ "once_cell",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
+name = "aws-sdk-resourcegroupstagging"
+version = "1.17.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "15142d151a4483e3c43490db2681b19a05ebcaad6586f458b7034a0929700d49"
+dependencies = [
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "aws-types",
+ "bytes",
+ "http 0.2.12",
+ "once_cell",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
 name = "aws-sdk-sso"
 version = "1.17.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -515,6 +585,9 @@ dependencies = [
  "anyhow",
  "aws-config",
  "aws-sdk-dynamodb",
+ "aws-sdk-ebs",
+ "aws-sdk-ec2",
+ "aws-sdk-resourcegroupstagging",
  "aws-sdk-sts",
  "clap",
  "tokio",
