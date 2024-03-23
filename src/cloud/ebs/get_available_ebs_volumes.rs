@@ -2,6 +2,7 @@ use anyhow::{Context, Result};
 use aws_config::SdkConfig;
 use aws_sdk_ec2::types::Filter;
 
+/// Get all available EBS volumes for the given account and region.
 pub async fn get_available_ebs_volumes(
     config: SdkConfig,
     region: &String,
@@ -25,7 +26,6 @@ pub async fn get_available_ebs_volumes(
         create_ebs_volume_arns(&volume_ids, account, region)
             .iter()
             .cloned()
-            .map(|x| x)
             .collect::<Vec<String>>(),
     );
 
@@ -56,6 +56,7 @@ struct VolumeResponse {
     next_token: Option<String>,
 }
 
+/// Call the EC2 describe_volumes API.
 async fn call_describe_volumes(config: &SdkConfig, token: String) -> Result<VolumeResponse> {
     // TODO: we should skip volumes that are already tagged, this is a bit tricky
     let client = aws_sdk_ec2::Client::new(config);

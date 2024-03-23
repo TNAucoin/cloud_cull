@@ -8,9 +8,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="603e789f-9957-4164-b640-85f7df7becc5" name="Changes" comment="assume role, and skeleton cli">
+      <change afterPath="$PROJECT_DIR$/src/cloud/utils/mod.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cloud/utils/sdk_config.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cloud/ebs/get_available_ebs_volumes.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/cloud/ebs/get_available_ebs_volumes.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/cli.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/cli.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cloud/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/cloud/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/aws_core.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/command_actions.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/command_actions.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/mod.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

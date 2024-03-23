@@ -1,7 +1,16 @@
 use aws_config::{BehaviorVersion, Region, SdkConfig};
 
+/// Get the default AWS configuration
+pub async fn get_default_config(region: &String) -> anyhow::Result<SdkConfig> {
+    let config = aws_config::defaults(BehaviorVersion::latest())
+        .region(Region::new(region.to_string()))
+        .load()
+        .await;
+    Ok(config)
+}
+
 /// Get the AWS configuration with the given role and account
-pub async fn get_config(
+pub async fn get_assume_role_config(
     role: &String,
     account: &String,
     region: &String,
@@ -23,22 +32,3 @@ pub async fn get_config(
 
     Ok(config)
 }
-
-// Get credentials for the given role
-// pub async fn get_credentials(
-//     config: &SdkConfig,
-//     account: &str,
-//     role: &str,
-// ) -> anyhow::Result<AssumeRoleOutput> {
-//     let client = sts::Client::new(config);
-//     let role_arn = format!("arn:aws:iam::{}:role/{}", account, role);
-//     let role = client
-//         .assume_role()
-//         .role_arn(&role_arn)
-//         .role_session_name("clutter_cull_cli")
-//         .send()
-//         .await
-//         .with_context(|| format!("could not assume role {}", &role_arn))?;
-//
-//     Ok(role)
-// }
