@@ -4,7 +4,7 @@ use clap::{arg, command, ArgMatches, Command};
 use crate::core::command_actions;
 
 pub fn gather_matches() -> ArgMatches {
-    let matches = command!()
+    command!()
         .subcommand(
             Command::new("ec2").subcommand(
                 Command::new("get-available-ebs-volumes")
@@ -14,8 +14,7 @@ pub fn gather_matches() -> ArgMatches {
                     .arg(arg!(-r --region <REGION> "region")),
             ),
         )
-        .get_matches();
-    matches
+        .get_matches()
 }
 
 pub async fn process_matches(matches: &ArgMatches) -> anyhow::Result<(), anyhow::Error> {

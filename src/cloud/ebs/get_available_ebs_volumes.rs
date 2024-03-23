@@ -22,7 +22,7 @@ pub async fn get_available_ebs_volumes(
         volume_ids.append(volume_response.volumes.as_mut());
     }
     volume_arns.extend(
-        create_ebs_volume_arns(&volume_ids, &account, &region)
+        create_ebs_volume_arns(&volume_ids, account, region)
             .iter()
             .cloned()
             .map(|x| x)
@@ -42,11 +42,8 @@ pub async fn get_available_ebs_volumes(
     Ok(volume_arns)
 }
 
-fn create_ebs_volume_arns(
-    volume_ids: &Vec<String>,
-    account: &String,
-    region: &String,
-) -> Vec<String> {
+/// Create the EBS volume ARNs for the given volume IDs.
+fn create_ebs_volume_arns(volume_ids: &[String], account: &String, region: &String) -> Vec<String> {
     volume_ids
         .iter()
         .map(|id| format!("arn:aws:ec2:{region}:{account}:volume/{id}"))
@@ -61,7 +58,7 @@ struct VolumeResponse {
 
 async fn call_describe_volumes(config: &SdkConfig, token: String) -> Result<VolumeResponse> {
     // TODO: we should skip volumes that are already tagged, this is a bit tricky
-    let client = aws_sdk_ec2::Client::new(&config);
+    let client = aws_sdk_ec2::Client::new(config);
     let resp = client
         .describe_volumes()
         .max_results(100)
