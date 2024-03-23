@@ -8,7 +8,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="603e789f-9957-4164-b640-85f7df7becc5" name="Changes" comment="assume role, and skeleton cli">
+      <change afterPath="$PROJECT_DIR$/src/cloud/ebs/get_available_ebs_volumes.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cloud/ebs/mod.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cloud/mod.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/command_actions.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/mod.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cloud.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cloud/ebs.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cloud/ec2.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/aws_core.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/aws_core.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/cli.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/cli.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +40,15 @@
       </list>
     </option>
   </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MacroExpansionManager">
@@ -34,6 +56,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -65,10 +90,15 @@
     "nodejs_package_manager_path": "npm",
     "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
     "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "actions.on.save",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/cloud/ebs" />
+    </key>
+  </component>
   <component name="RsExternalLinterProjectSettings">
     <option name="runOnTheFly" value="true" />
   </component>
@@ -119,6 +149,9 @@
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+  </component>
+  <component name="RustfmtProjectSettings">
+    <option name="useRustfmt" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

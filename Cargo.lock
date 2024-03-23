@@ -214,6 +214,28 @@ dependencies = [
 ]
 
 [[package]]
+name = "aws-sdk-resourcegroupstagging"
+version = "1.17.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "15142d151a4483e3c43490db2681b19a05ebcaad6586f458b7034a0929700d49"
+dependencies = [
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "aws-types",
+ "bytes",
+ "http 0.2.12",
+ "once_cell",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
 name = "aws-sdk-sso"
 version = "1.17.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -565,6 +587,7 @@ dependencies = [
  "aws-sdk-dynamodb",
  "aws-sdk-ebs",
  "aws-sdk-ec2",
+ "aws-sdk-resourcegroupstagging",
  "aws-sdk-sts",
  "clap",
  "tokio",
