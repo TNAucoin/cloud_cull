@@ -24,7 +24,8 @@ pub async fn get_available_ebs_volumes(
     volume_arns.extend(
         create_ebs_volume_arns(&volume_ids, &account, &region)
             .iter()
-            .map(|x| x.clone())
+            .cloned()
+            .map(|x| x)
             .collect::<Vec<String>>(),
     );
 
