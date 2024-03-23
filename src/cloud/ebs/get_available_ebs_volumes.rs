@@ -22,12 +22,7 @@ pub async fn get_available_ebs_volumes(
         volume_response = call_describe_volumes(&config, token).await?;
         volume_ids.append(volume_response.volumes.as_mut());
     }
-    volume_arns.extend(
-        create_ebs_volume_arns(&volume_ids, account, region)
-            .iter()
-            .cloned()
-            .collect::<Vec<String>>(),
-    );
+    volume_arns.extend(create_ebs_volume_arns(&volume_ids, account, region).to_vec());
 
     // TODO: Move this out of this function
     let tag_resp = tagging_client
