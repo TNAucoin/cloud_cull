@@ -2,6 +2,8 @@ use anyhow::{Context, Result};
 use aws_config::SdkConfig;
 use aws_sdk_ec2::types::Filter;
 
+use crate::core::{Finding, FindingId};
+
 //TODO: move this to be an argument
 const MAX_RESULTS: i32 = 100;
 
@@ -16,26 +18,31 @@ pub async fn get_available_ebs_volumes(
     config: SdkConfig,
     region: &str,
     account: &str,
-) -> Result<Vec<String>> {
+) -> Result<Vec<Finding>> {
     // create a new structs to hold volume findings
-    let mut volume_arns: Vec<String> = Vec::new();
+    let mut volume_findings: Vec<Finding> = Vec::new();
 
     // get all available volumes
     let volume_ids = get_volumes(&config, MAX_RESULTS)
         .await
         .with_context(|| "Failed to get available EBS volumes")?;
 
-    volume_arns.extend(create_ebs_volume_arns(&volume_ids, account, region).to_vec());
+    volume_findings.extend(create_ebs_volume_findings(&volume_ids, account, region).to_vec());
     // TODO: tag the volumes
 
-    Ok(volume_arns)
+    Ok(volume_findings)
 }
 
 /// Create the EBS volume ARNs for the given volume IDs.
-fn create_ebs_volume_arns(volume_ids: &[String], account: &str, region: &str) -> Vec<String> {
+fn create_ebs_volume_findings(volume_ids: &[String], account: &str, region: &str) -> Vec<Finding> {
     volume_ids
         .iter()
-        .map(|id| format!("arn:aws:ec2:{region}:{account}:volume/{id}"))
+        .map(|id| {
+            Finding::new(
+                FindingId::EbsVolume,
+                format!("arn:aws:ec2:{}:{}:volume/{}", region, account, id),
+            )
+        })
         .collect()
 }
 

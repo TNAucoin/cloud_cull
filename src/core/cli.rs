@@ -1,5 +1,5 @@
 use anyhow::Context;
-use clap::{arg, ArgMatches, command, Command};
+use clap::{arg, command, ArgMatches, Command};
 
 use crate::core::command_actions;
 
