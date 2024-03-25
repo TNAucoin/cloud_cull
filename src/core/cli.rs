@@ -1,8 +1,6 @@
 use anyhow::Context;
 use clap::{arg, ArgMatches, command, Command};
 
-use structopt::StructOpt;
-
 use crate::core::command_actions;
 
 pub fn gather_matches() -> ArgMatches {
