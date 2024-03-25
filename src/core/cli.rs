@@ -23,23 +23,22 @@ pub async fn process_matches(matches: &ArgMatches) -> anyhow::Result<(), anyhow:
     match matches.subcommand() {
         Some(("ec2", sub_m)) => match sub_m.subcommand() {
             Some(("get-available-ebs-volumes", args)) => {
-                let role: &String = args.get_one("role").unwrap();
-                let account: &String = args.get_one("account").unwrap();
-                let region: &String = args.get_one("region").unwrap();
+                let role: &String = args.get_one("role").expect("Role is required");
+                let account: &String = args.get_one("account").expect("Account is required");
+                let region: &String = args.get_one("region").expect("Region is required");
                 command_actions::get_available_ebs_volumes(role, account, region)
                     .await
                     .with_context(|| {
                         format!("Failed to get available EBS volumes for role {}", role)
                     })
             }
-            _ => {
-                // No valid subcommand was found, this is handled by clap.
-                Ok(())
-            }
+            _ => handle_invalid_subcommand(),
         },
-        _ => {
-            // No valid subcommand was found, this is handled by clap.
-            Ok(())
-        }
+        _ => handle_invalid_subcommand(),
     }
+}
+
+/// Handle the case where no valid subcommand was found. This is handled by clap.
+fn handle_invalid_subcommand() -> anyhow::Result<()> {
+    Ok(())
 }

@@ -1,7 +1,7 @@
 use aws_config::{BehaviorVersion, Region, SdkConfig};
 
 /// Get the default AWS configuration
-pub async fn get_default_config(region: &String) -> anyhow::Result<SdkConfig> {
+pub async fn _get_default_config(region: &String) -> anyhow::Result<SdkConfig> {
     let config = aws_config::defaults(BehaviorVersion::latest())
         .region(Region::new(region.to_string()))
         .load()
@@ -31,4 +31,19 @@ pub async fn get_assume_role_config(
         .await;
 
     Ok(config)
+}
+
+pub async fn get_assume_role_config_with_defaults(
+    role: &str,
+    account: &str,
+    region: &str,
+) -> anyhow::Result<SdkConfig> {
+    let config = aws_config::defaults(BehaviorVersion::latest()).load().await;
+    get_assume_role_config(
+        &role.to_string(),
+        &account.to_string(),
+        &region.to_string(),
+        &config,
+    )
+    .await
 }
