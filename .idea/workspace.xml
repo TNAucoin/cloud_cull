@@ -8,7 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="603e789f-9957-4164-b640-85f7df7becc5" name="Changes" comment="assume role, and skeleton cli">
-      <change beforePath="$PROJECT_DIR$/src/core/cli.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/cli.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cloud/ebs/get_available_ebs_volumes.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/cloud/ebs/get_available_ebs_volumes.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +154,12 @@
       <workItem from="1711119358911" duration="10105000" />
       <workItem from="1711330587264" duration="39000" />
       <workItem from="1711330633743" duration="86000" />
-      <workItem from="1711330725439" duration="1584000" />
+      <workItem from="1711330725439" duration="2198000" />
+      <workItem from="1711332931046" duration="210000" />
+      <workItem from="1711333146210" duration="244000" />
+      <workItem from="1711333407133" duration="132000" />
+      <workItem from="1711333544328" duration="85000" />
+      <workItem from="1711333637921" duration="515000" />
     </task>
     <task id="LOCAL-00001" summary="assume role, and skeleton cli">
       <option name="closed" value="true" />

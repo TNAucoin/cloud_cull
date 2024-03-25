@@ -5,6 +5,12 @@ use aws_sdk_ec2::types::Filter;
 //TODO: move this to be an argument
 const MAX_RESULTS: i32 = 100;
 
+// Response struct for describe_volumes
+struct VolumeResponse {
+    volumes: Vec<String>,
+    next_token: Option<String>,
+}
+
 /// Get all available EBS volumes for the given account and region.
 pub async fn get_available_ebs_volumes(
     config: SdkConfig,
@@ -31,12 +37,6 @@ fn create_ebs_volume_arns(volume_ids: &[String], account: &str, region: &str) ->
         .iter()
         .map(|id| format!("arn:aws:ec2:{region}:{account}:volume/{id}"))
         .collect()
-}
-
-// Response struct for describe_volumes
-struct VolumeResponse {
-    volumes: Vec<String>,
-    next_token: Option<String>,
 }
 
 /// Get all available EBS volumes.
