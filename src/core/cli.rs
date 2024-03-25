@@ -1,18 +1,22 @@
 use anyhow::Context;
-use clap::{arg, command, ArgMatches, Command};
+use clap::{arg, ArgMatches, command, Command};
+
+use structopt::StructOpt;
 
 use crate::core::command_actions;
 
 pub fn gather_matches() -> ArgMatches {
     command!()
         .subcommand(
-            Command::new("ec2").subcommand(
-                Command::new("get-available-ebs-volumes")
-                    .about("Get available EBS volumes")
-                    .arg(arg!(-a --account <ACCOUNT> "account number"))
-                    .arg(arg!(-R --role <ROLE> "role name"))
-                    .arg(arg!(-r --region <REGION> "region")),
-            ),
+            Command::new("ebs")
+                .about("Elastic Block Store (EBS) commands")
+                .subcommand(
+                    Command::new("get-available-ebs-volumes")
+                        .about("Get available EBS volumes")
+                        .arg(arg!(-a --account <ACCOUNT> "account number"))
+                        .arg(arg!(-R --role <ROLE> "role name"))
+                        .arg(arg!(-r --region <REGION> "region")),
+                ),
         )
         .get_matches()
 }
