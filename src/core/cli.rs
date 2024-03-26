@@ -1,43 +1,46 @@
 use anyhow::Context;
-use clap::{arg, command, ArgMatches, Command};
+use clap::ArgMatches;
 
 use crate::core::command_actions;
 
-pub fn gather_matches() -> ArgMatches {
-    command!()
-        .subcommand(
-            Command::new("ec2").subcommand(
-                Command::new("get-available-ebs-volumes")
-                    .about("Get available EBS volumes")
-                    .arg(arg!(-a --account <ACCOUNT> "account number"))
-                    .arg(arg!(-R --role <ROLE> "role name"))
-                    .arg(arg!(-r --region <REGION> "region")),
-            ),
-        )
-        .get_matches()
+pub async fn process_matches(matches: &ArgMatches) -> anyhow::Result<(), anyhow::Error> {
+    if let Some((command, sub_m)) = matches.subcommand() {
+        if let Some((subcommand, args)) = sub_m.subcommand() {
+            // These arguments are required for all subcommands
+            let role: &String = args.get_one("role").expect("Role is required");
+            let account: &String = args.get_one("account").expect("Account is required");
+            let region: &String = args.get_one("region").expect("Region is required");
+
+            match (command, subcommand) {
+                ("ec2", "get-available-ec2-volumes") => {
+                    command_actions::get_available_ebs_volumes(role, account, region)
+                        .await
+                        .with_context(|| {
+                            format!("Failed to get available EBS volumes for role {}", role)
+                        })
+                }
+                ("logs", "get-log-groups-without-retention") => {
+                    command_actions::get_log_groups_without_retention(role, account, region)
+                        .await
+                        .with_context(|| {
+                            format!(
+                                "Failed to get log groups without retention for role {}",
+                                role
+                            )
+                        })
+                }
+                // Catch all for invalid command and subcommand combinations
+                _ => handle_invalid_subcommand(),
+            }
+        } else {
+            handle_invalid_subcommand()
+        }
+    } else {
+        handle_invalid_subcommand()
+    }
 }
 
-pub async fn process_matches(matches: &ArgMatches) -> anyhow::Result<(), anyhow::Error> {
-    match matches.subcommand() {
-        Some(("ec2", sub_m)) => match sub_m.subcommand() {
-            Some(("get-available-ebs-volumes", args)) => {
-                let role: &String = args.get_one("role").unwrap();
-                let account: &String = args.get_one("account").unwrap();
-                let region: &String = args.get_one("region").unwrap();
-                command_actions::get_available_ebs_volumes(role, account, region)
-                    .await
-                    .with_context(|| {
-                        format!("Failed to get available EBS volumes for role {}", role)
-                    })
-            }
-            _ => {
-                // No valid subcommand was found, this is handled by clap.
-                Ok(())
-            }
-        },
-        _ => {
-            // No valid subcommand was found, this is handled by clap.
-            Ok(())
-        }
-    }
+/// Handle the case where no valid subcommand was found. This is handled by clap.
+fn handle_invalid_subcommand() -> anyhow::Result<()> {
+    Ok(())
 }

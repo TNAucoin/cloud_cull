@@ -1,15 +1,27 @@
-use crate::cloud::ebs;
+use crate::cloud::ec2;
+use crate::cloud::log;
 use crate::cloud::utils;
 
 /// Get all available EBS volumes for the given account and region.
 pub async fn get_available_ebs_volumes(
-    role: &String,
-    account: &String,
-    region: &String,
+    role: &str,
+    account: &str,
+    region: &str,
 ) -> anyhow::Result<()> {
-    let local_config = utils::get_default_config(region).await?;
-    let config = utils::get_assume_role_config(role, account, region, &local_config).await?;
-    let available_volumes = ebs::get_available_ebs_volumes(config, region, account).await?;
-    println!("{:?}", available_volumes);
+    let config = utils::get_assume_role_config_with_defaults(role, account, region).await?;
+    let volume_findings = ec2::get_available_ebs_volumes(config, region, account).await?;
+    println!("Available EBS volumes: {:?}", volume_findings);
+    Ok(())
+}
+
+/// Get log groups without retention for the given account and region.
+pub async fn get_log_groups_without_retention(
+    role: &str,
+    account: &str,
+    region: &str,
+) -> anyhow::Result<()> {
+    let config = utils::get_assume_role_config_with_defaults(role, account, region).await?;
+    let log_findings = log::get_logs_with_no_retention(config).await?;
+    println!("Log groups without retention: {:?}", log_findings);
     Ok(())
 }
