@@ -1,7 +1,7 @@
 use anyhow::Context;
 use aws_config::SdkConfig;
-use aws_sdk_cloudwatchlogs::Client;
 use aws_sdk_cloudwatchlogs::types::LogGroup;
+use aws_sdk_cloudwatchlogs::Client;
 use futures::{stream, StreamExt};
 
 use crate::core::{Finding, FindingId};
@@ -15,7 +15,6 @@ pub async fn get_logs_with_no_retention(config: SdkConfig) -> anyhow::Result<Vec
     let logs = get_logs(config, temp_prefix)
         .await
         .with_context(|| "Failed to get logs")?;
-    println!("Logs: {:?}", logs);
     Ok(logs)
 }
 

@@ -49,13 +49,16 @@ fn create_ebs_volume_findings(volume_ids: &[String], account: &str, region: &str
 /// Get all available EBS volumes.
 async fn get_volumes(config: &SdkConfig, max_results: i32) -> Result<Vec<String>> {
     let mut volume_ids: Vec<String> = Vec::new();
-    // get all volumes
-    let mut volume_response = call_describe_volumes(config, String::from(""), max_results).await?;
-    volume_ids.append(volume_response.volumes.as_mut());
+    let mut token = String::from("");
+    loop {
+        let volume_response = call_describe_volumes(config, token.clone(), max_results).await?;
+        volume_ids.extend(volume_response.volumes);
 
-    while let Some(token) = volume_response.next_token {
-        volume_response = call_describe_volumes(config, token, max_results).await?;
-        volume_ids.append(volume_response.volumes.as_mut());
+        if let Some(next_token) = volume_response.next_token {
+            token = next_token;
+        } else {
+            break;
+        }
     }
 
     Ok(volume_ids)
