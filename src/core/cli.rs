@@ -19,6 +19,13 @@ pub async fn process_matches(matches: &ArgMatches) -> anyhow::Result<(), anyhow:
                             format!("Failed to get available EBS volumes for role {}", role)
                         })
                 }
+                ("ec2", "get-unassigned-eips") => {
+                    command_actions::get_unassociated_eip(role, account, region)
+                        .await
+                        .with_context(|| {
+                            format!("Failed to get unassociated EIPs for role {}", role)
+                        })
+                }
                 ("logs", "get-log-groups-without-retention") => {
                     command_actions::get_log_groups_without_retention(role, account, region)
                         .await

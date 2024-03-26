@@ -25,3 +25,15 @@ pub async fn get_log_groups_without_retention(
     println!("Log groups without retention: {:?}", log_findings);
     Ok(())
 }
+
+/// Get unassociated EIPs for the given account and region.
+pub async fn get_unassociated_eip(
+    role: &str,
+    account: &str,
+    region: &str,
+) -> anyhow::Result<()> {
+    let config = utils::get_assume_role_config_with_defaults(role, account, region).await?;
+    let eip_findings = ec2::get_unassociated_eip(config,account,region).await?;
+    println!("Unassociated EIPs: {:?}", eip_findings);
+    Ok(())
+}

@@ -16,12 +16,21 @@ use clap::{arg, command, ArgMatches, Command};
 pub fn gather_commands() -> ArgMatches {
     command!()
         .subcommand(
-            create_base_command("ec2", "EC2 commands").subcommand(create_sub_command(
-                "get-available-ec2-volumes",
-                "Get available EC2 volumes",
-                &common_args(),
-                None,
-            )),
+            create_base_command("ec2", "EC2 commands")
+                .subcommands(vec![
+                    create_sub_command(
+                        "get-available-ec2-volumes",
+                        "Get available EC2 volumes",
+                        &common_args(),
+                        None,
+                    ),
+                    create_sub_command(
+                        "get-unassigned-eips",
+                        "Get unassociated EIPs",
+                        &common_args(),
+                        None,
+                    ),
+                ]),
         )
         .subcommand(
             create_base_command("logs", "CloudWatch Logs commands").subcommand(create_sub_command(
