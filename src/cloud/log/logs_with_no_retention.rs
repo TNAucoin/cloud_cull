@@ -4,19 +4,27 @@ use aws_sdk_cloudwatchlogs::Client;
 use aws_sdk_cloudwatchlogs::types::LogGroup;
 use futures::{stream, StreamExt};
 
-pub async fn get_logs_with_no_retention(config: SdkConfig) -> anyhow::Result<()> {
+use crate::core::{Finding, FindingId};
+
+pub async fn get_logs_with_no_retention(config: SdkConfig) -> anyhow::Result<Vec<Finding>> {
     let temp_prefix = vec![
         String::from("/aws"),
         String::from("test"),
         String::from("/ecs"),
     ];
-    let _logs = get_logs(config, temp_prefix)
+    let logs = get_logs(config, temp_prefix)
         .await
         .with_context(|| "Failed to get logs")?;
-    Ok(())
+    println!("Logs: {:?}", logs);
+    Ok(logs)
 }
 
-async fn get_logs(config: SdkConfig, log_group_prefix: Vec<String>) -> anyhow::Result<()> {
+async fn get_logs(
+    config: SdkConfig,
+    log_group_prefix: Vec<String>,
+) -> anyhow::Result<Vec<Finding>> {
+    let mut log_group_finding: Vec<Finding> = Vec::new();
+
     let log_client = aws_sdk_cloudwatchlogs::Client::new(&config);
     let mut stream = stream::iter(
         log_group_prefix
@@ -25,9 +33,27 @@ async fn get_logs(config: SdkConfig, log_group_prefix: Vec<String>) -> anyhow::R
     );
 
     while let Some(result) = stream.next().await {
-        result;
+        let log_groups = result.await;
+        match log_groups {
+            Ok(groups) => {
+                log_group_finding.extend(create_log_group_finding(&groups));
+            }
+            Err(e) => {
+                eprintln!("Error: {:?}", e);
+            }
+        }
     }
-    Ok(())
+    Ok(log_group_finding)
+}
+
+fn create_log_group_finding(log_group: &Vec<LogGroup>) -> Vec<Finding> {
+    let mut log_group_finding: Vec<Finding> = Vec::new();
+    for group in log_group {
+        if let Some(log_arn) = &group.arn {
+            log_group_finding.push(Finding::new(FindingId::LogGroup, log_arn.to_string()));
+        }
+    }
+    log_group_finding
 }
 
 async fn process_log_group_prefix(
@@ -54,6 +80,5 @@ async fn process_log_group_prefix(
             .with_context(|| "Failed to describe log groups")?;
         log_group_results.extend(log_groups.log_groups.unwrap_or_default());
     }
-    println!("Log groups: {:?}", log_group_results);
     Ok(log_group_results)
 }
