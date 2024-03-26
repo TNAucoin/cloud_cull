@@ -9,10 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="603e789f-9957-4164-b640-85f7df7becc5" name="Changes" comment="assume role, and skeleton cli">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cloud/ec2/get_available_ebs_volumes.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/cloud/ec2/get_available_ebs_volumes.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cloud/log/logs_with_no_retention.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/cloud/log/logs_with_no_retention.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/commands.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/commands.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

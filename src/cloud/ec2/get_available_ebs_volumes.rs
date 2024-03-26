@@ -23,7 +23,7 @@ pub async fn get_available_ebs_volumes(
     let mut volume_findings: Vec<Finding> = Vec::new();
 
     // get all available volumes
-    let volume_ids = get_volumes(&config, MAX_RESULTS)
+    let volume_ids = fetch_available_volume_ids(&config, MAX_RESULTS)
         .await
         .with_context(|| "Failed to get available EBS volumes")?;
 
@@ -46,12 +46,12 @@ fn create_ebs_volume_findings(volume_ids: &[String], account: &str, region: &str
         .collect()
 }
 
-/// Get all available EBS volumes.
-async fn get_volumes(config: &SdkConfig, max_results: i32) -> Result<Vec<String>> {
+/// Fetch all available EBS volumes.
+async fn fetch_available_volume_ids(config: &SdkConfig, max_results: i32) -> Result<Vec<String>> {
     let mut volume_ids: Vec<String> = Vec::new();
     let mut token = String::from("");
     loop {
-        let volume_response = call_describe_volumes(config, token.clone(), max_results).await?;
+        let volume_response = fetch_ec2_volume_details(config, token.clone(), max_results).await?;
         volume_ids.extend(volume_response.volumes);
 
         if let Some(next_token) = volume_response.next_token {
@@ -65,7 +65,7 @@ async fn get_volumes(config: &SdkConfig, max_results: i32) -> Result<Vec<String>
 }
 
 /// Call the EC2 describe_volumes API.
-async fn call_describe_volumes(
+async fn fetch_ec2_volume_details(
     config: &SdkConfig,
     token: String,
     max_results: i32,

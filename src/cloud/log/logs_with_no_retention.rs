@@ -1,24 +1,25 @@
 use anyhow::Context;
 use aws_config::SdkConfig;
-use aws_sdk_cloudwatchlogs::types::LogGroup;
 use aws_sdk_cloudwatchlogs::Client;
+use aws_sdk_cloudwatchlogs::types::LogGroup;
 use futures::{stream, StreamExt};
 
 use crate::core::{Finding, FindingId};
 
 pub async fn get_logs_with_no_retention(config: SdkConfig) -> anyhow::Result<Vec<Finding>> {
+    // TODO: move this to be an argument
     let temp_prefix = vec![
         String::from("/aws"),
         String::from("test"),
         String::from("/ecs"),
     ];
-    let logs = get_logs(config, temp_prefix)
+    let logs = retrieve_log_groups(config, temp_prefix)
         .await
         .with_context(|| "Failed to get logs")?;
     Ok(logs)
 }
 
-async fn get_logs(
+async fn retrieve_log_groups(
     config: SdkConfig,
     log_group_prefix: Vec<String>,
 ) -> anyhow::Result<Vec<Finding>> {
@@ -28,7 +29,7 @@ async fn get_logs(
     let mut stream = stream::iter(
         log_group_prefix
             .into_iter()
-            .map(|prefix| process_log_group_prefix(&log_client, prefix)),
+            .map(|prefix| fetch_cloudwatch_log_groups(&log_client, prefix)),
     );
 
     while let Some(result) = stream.next().await {
@@ -55,7 +56,7 @@ fn create_log_group_finding(log_group: &Vec<LogGroup>) -> Vec<Finding> {
     log_group_finding
 }
 
-async fn process_log_group_prefix(
+async fn fetch_cloudwatch_log_groups(
     client: &Client,
     prefix: String,
 ) -> anyhow::Result<Vec<LogGroup>> {
