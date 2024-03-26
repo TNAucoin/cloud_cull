@@ -1,7 +1,7 @@
 use anyhow::Context;
 use aws_config::SdkConfig;
-use aws_sdk_cloudwatchlogs::Client;
 use aws_sdk_cloudwatchlogs::types::LogGroup;
+use aws_sdk_cloudwatchlogs::Client;
 use futures::{stream, StreamExt};
 
 use crate::core::{Finding, FindingId};
