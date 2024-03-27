@@ -24,3 +24,4 @@ clap = { version = "4.5.3", features = ["derive", "cargo", "string"] }
 futures = "0.3.30"
 tokio = { version = "1.36.0", features = ["full"] }
 log = "0.4.21"
+serde = { version = "1.0.197", features = ["derive"] }

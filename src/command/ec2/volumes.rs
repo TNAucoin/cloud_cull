@@ -1,11 +1,40 @@
 use anyhow::{Context, Result};
 use aws_config::SdkConfig;
 use aws_sdk_ec2::types::Filter;
+use clap::Parser;
+use serde::Serialize;
 
 use crate::core::{Finding, FindingId};
 
 //TODO: move this to be an argument
 const MAX_RESULTS: i32 = 100;
+
+#[derive(Debug, Serialize, Parser)]
+pub struct EbsVolume {}
+
+impl EbsVolume {
+    pub async fn run(
+        &self,
+        config: SdkConfig,
+        account: &str,
+        region: &str,
+    ) -> Result<Vec<Finding>> {
+        let findings = get_available_ebs_volumes(config, region, account)
+            .await
+            .with_context(|| {
+                format!(
+                    "Failed to get available EBS volumes for account {} in region {}",
+                    account, region
+                )
+            });
+        if let Ok(findings) = findings {
+            println!("Available EBS volumes: {:?}", findings);
+            Ok(findings)
+        } else {
+            Err(findings.unwrap_err())
+        }
+    }
+}
 
 // Response struct for describe_volumes
 struct VolumeResponse {
@@ -14,7 +43,7 @@ struct VolumeResponse {
 }
 
 /// Get all available EBS volumes for the given account and region.
-pub async fn get_available_ebs_volumes(
+async fn get_available_ebs_volumes(
     config: SdkConfig,
     region: &str,
     account: &str,
